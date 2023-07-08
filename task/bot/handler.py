@@ -36,11 +36,11 @@ def match_trigger_id(content: str) -> Union[str, None]:
 
 
 async def callback_trigger(trigger_id: str, trigger_status: str, message: Message):
-    json_str = json.dumps(message)
-    print("what a fuck", json_str)
+    # json_str = json.dumps(message)
+    # print("what a fuck", json_str)
     await callback(CallbackData(
         type=trigger_status,
-        content=json_str,
+        # content=json_str,
         embeds=[],
         trigger_id=trigger_id,
     ))
