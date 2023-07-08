@@ -47,11 +47,9 @@ async def fetch(
 ) -> Union[bool, None]:
     logger.debug(f"Fetch: {url}, {kwargs}")
     async with session.request(method, url, **kwargs) as resp:
-        response_body = resp.text
-        data = json.loads(response_body)
-        print(json.dumps(data, indent=4))
         if not resp.ok:
             return None
+        print("fuck")
         return True
 
 
