@@ -53,7 +53,7 @@ async def on_message_edit(_: Message, after: Message):
     if after.author.id != 936929561302675456:
         return
     # json_str = json.dumps(after.attachments)
-    # logger.debug(f"on_message: {json_str}")
+    logger.debug(f"on_message: {after.attachments}")
     # json_str = json.dumps(after.components)
     # logger.debug(f"on_message: {json_str}")
     logger.debug(f"on_message_edit: {after.content}")
