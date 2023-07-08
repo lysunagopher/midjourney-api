@@ -28,11 +28,8 @@ async def on_ready():
 async def on_message(message: Message):
     if message.author.id != 936929561302675456:
         return
-    json_str = json.dumps(message.attachments)
-    logger.debug(f"on_message: {json_str}")
-    json_str = json.dumps(message.components)
-    logger.debug(f"on_message: {json_str}")
-    # logger.debug(f"on_message embeds: {message.embeds[0].to_dict() if message.embeds else message.embeds}")
+
+    logger.debug(f"on_message embeds: {message.embeds[0].to_dict() if message.embeds else message.embeds}")
     content = message.content
     trigger_id = match_trigger_id(content)
     if not trigger_id:
@@ -55,7 +52,10 @@ async def on_message(message: Message):
 async def on_message_edit(_: Message, after: Message):
     if after.author.id != 936929561302675456:
         return
-
+    json_str = json.dumps(after.attachments)
+    logger.debug(f"on_message: {json_str}")
+    json_str = json.dumps(after.components)
+    logger.debug(f"on_message: {json_str}")
     logger.debug(f"on_message_edit: {after.content}")
     if after.embeds:
         embed = after.embeds[0]
