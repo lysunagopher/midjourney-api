@@ -1,3 +1,5 @@
+import json
+
 from discord import Intents, Message
 from discord.ext import commands
 from loguru import logger
@@ -26,9 +28,9 @@ async def on_ready():
 async def on_message(message: Message):
     if message.author.id != 936929561302675456:
         return
-
-    logger.debug(f"on_message: {message.content}")
-    logger.debug(f"on_message embeds: {message.embeds[0].to_dict() if message.embeds else message.embeds}")
+    json_str = json.dumps(message)
+    logger.debug(f"on_message: {json_str}")
+    # logger.debug(f"on_message embeds: {message.embeds[0].to_dict() if message.embeds else message.embeds}")
     content = message.content
     trigger_id = match_trigger_id(content)
     if not trigger_id:
