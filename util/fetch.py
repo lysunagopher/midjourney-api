@@ -1,4 +1,5 @@
 import asyncio
+import json
 from typing import Callable, Coroutine, Any, TypeVar, Union, Dict
 
 from aiohttp import ClientError, ClientSession, hdrs
@@ -46,8 +47,9 @@ async def fetch(
 ) -> Union[bool, None]:
     logger.debug(f"Fetch: {url}, {kwargs}")
     async with session.request(method, url, **kwargs) as resp:
-        response_body = resp.text()
-        print(response_body)
+        response_body = resp.text
+        data = json.loads(response_body)
+        print(json.dumps(data, indent=4))
         if not resp.ok:
             return None
         return True
