@@ -52,12 +52,13 @@ async def on_message(message: Message):
 async def on_message_edit(_: Message, after: Message):
     if after.author.id != 936929561302675456:
         return
-    # json_str = json.dumps(after.attachments)
-    logger.debug(f"on_message: {after.attachments[0]}")
-    logger.debug(f"on_message: {after.attachments}")
+
+    json_str = json.dumps(after.components[0].to_dict())
+    logger.debug(f"on_message: {json_str}")
+    # logger.debug(f"on_message: {after.components}")
     # json_str = json.dumps(after.components)
     # logger.debug(f"on_message: {json_str}")
-    logger.debug(f"on_message_edit: {after.content}")
+    # logger.debug(f"on_message_edit: {after.content}")
     if after.embeds:
         embed = after.embeds[0]
         if not (embed.image.width and embed.image.height):
