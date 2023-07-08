@@ -35,7 +35,7 @@ def prompt_handler(prompt: str, picurl: Union[str, None] = None):
     if not picurl and prompt.startswith(("http://", "https://")):
         picurl, _, prompt = prompt.partition(" ")
 
-    return trigger_id, f"{picurl+' ' if picurl else ''}{PROMPT_PREFIX}{trigger_id}{PROMPT_SUFFIX}{prompt}"
+    return trigger_id, f"{picurl+' ' if picurl else ''}{prompt}"
 
 
 def http_response(func):
