@@ -1,4 +1,5 @@
 import asyncio
+import json
 import re
 from typing import Dict, Union, Any
 
@@ -35,14 +36,10 @@ def match_trigger_id(content: str) -> Union[str, None]:
 
 
 async def callback_trigger(trigger_id: str, trigger_status: str, message: Message):
+    json_str = json.dumps(message)
     await callback(CallbackData(
         type=trigger_status,
-        id=message.id,
-        content=message.content,
-        attachments=[
-            Attachment(**attachment.to_dict())
-            for attachment in message.attachments
-        ],
+        content=json_str,
         embeds=[],
         trigger_id=trigger_id,
     ))
