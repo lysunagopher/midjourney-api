@@ -48,7 +48,7 @@ async def fetch(
     logger.debug(f"Fetch: {url}, {kwargs}")
     async with session.request(method, url, **kwargs) as resp:
         if not resp.ok:
-            print("fuck")
+            print(resp.status)
             return None
         return True
 
