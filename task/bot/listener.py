@@ -28,7 +28,9 @@ async def on_ready():
 async def on_message(message: Message):
     if message.author.id != 936929561302675456:
         return
-    json_str = json.dumps(message)
+    json_str = json.dumps(message.attachments)
+    logger.debug(f"on_message: {json_str}")
+    json_str = json.dumps(message.components)
     logger.debug(f"on_message: {json_str}")
     # logger.debug(f"on_message embeds: {message.embeds[0].to_dict() if message.embeds else message.embeds}")
     content = message.content
